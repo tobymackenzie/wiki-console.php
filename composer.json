@@ -1,0 +1,23 @@
+{
+	"name": "tjm/wiki-console"
+	,"description": "CLI console for working with an instance of 'tjm/wiki'"
+	,"authors": [
+		{
+			"name": "Toby Mackenzie"
+			,"email": "public@tobymackenzie.com"
+			,"homepage": "https://www.tobymackenzie.com"
+		}
+	]
+	,"license": "0BSD"
+	,"autoload": {
+		"psr-4": {
+			"TJM\\WikiConsole\\": "src"
+		}
+	}
+	,"require": {
+		"php": ">=5.4"
+		,"tjm/wiki": "@dev"
+		,"symfony/console": ">=2.4 <5.0"
+		,"tjm/sy-console": "^1"
+	}
+}

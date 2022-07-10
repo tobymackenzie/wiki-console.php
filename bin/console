@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+namespace TJM\WikiConsole;
+use TJM\Wiki\Wiki;
+use TJM\WikiConsole\Console;
+
+require_once(__DIR__ . '/../vendor/autoload.php');
+$app = new Console(isset($wiki) ? $wiki : new Wiki(__DIR__ . '/../wiki'));
+$app->setName(isset($wikiName) ? $wikiName : 'TMWiki');
+$app->run();

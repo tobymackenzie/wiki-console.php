@@ -27,6 +27,8 @@ class CommitPageCommand extends Command{
 		if(!$this->wiki->hasPage($name)){
 			throw new Exception("Page {$name} doesn't exist");
 		}
-		$this->wiki->commitPage($name, $input->getOption('message'));
+		if(!$this->wiki->commitPage($name, $this->wiki->getPage($name), $input->getOption('message'))){
+			throw new Exception("Failed to commit page");
+		}
 	}
 }

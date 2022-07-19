@@ -26,6 +26,6 @@ class CreatePageCommand extends Command{
 		$page = $this->wiki->getPage($name);
 		$page->setContent($input->getOption('content'));
 		$this->wiki->setPage($name, $page);
-		$output->writeln("Page created at " . $this->wiki->getPageFilePath($name, $page));
+		$output->writeln("Page created at " . $this->wiki->getFilePath($page));
 	}
 }

@@ -31,9 +31,12 @@ class OpenPageCommand extends Command{
 		if(strpos('{{', $command) === false){
 			$command .= ' {{path}}';
 		}
-		$this->wiki->run([
+		$result = $this->wiki->run([
 			'command'=> $command,
-			'interactive'=> true,
+			'interactive'=> $input->isInteractive(),
 		], $name, $page);
+		if(!$input->isInteractive()){
+			$output->writeln($result);
+		}
 	}
 }

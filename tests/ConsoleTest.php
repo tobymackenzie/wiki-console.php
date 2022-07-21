@@ -37,4 +37,28 @@ class ConsoleTest extends TestCase{
 		]);
 		$this->assertMatchesRegularExpression("/content: [\d]{4}-[\d]{2}-[\d]{2} [\d]{2}:[\d]{2}:[\d]{2}\nInitial commit/m", $wiki->runGit('log --pretty="%s"'));
 	}
+	public function testStage(){
+		$wiki = new Wiki(self::WIKI_DIR);
+		$console = new Console($wiki);
+		$statusCommand = '-c color.status=false status --short';
+		$file1 = self::WIKI_DIR . '/1.md';
+		$tester = new CommandTester($console->find('stage'));
+		$this->assertEquals("", $wiki->runGit($statusCommand));
+		file_put_contents($file1, 'abc');
+		$tester->execute([
+			'files'=> ['1.md'],
+		]);
+		$this->assertEquals("A  1.md", $wiki->runGit($statusCommand));
+		$file2 = self::WIKI_DIR . '/2.md';
+		file_put_contents($file2, 'abc');
+		$tester->execute([
+			'files'=> ['1.md', '2.md'],
+		]);
+		$this->assertEquals("A  1.md\nA  2.md", $wiki->runGit($statusCommand));
+		file_put_contents($file2, 'abcd');
+		$tester->execute([
+			'--all'=> true,
+		]);
+		$this->assertEquals("A  1.md\nA  2.md", $wiki->runGit($statusCommand));
+	}
 }

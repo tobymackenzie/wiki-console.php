@@ -23,8 +23,8 @@ class CommitCommand extends Command{
 		;
 	}
 	protected function execute(InputInterface $input, OutputInterface $output){
-		foreach($input->getArgument('files') as $file){
-			$this->wiki->runGit('add ' . escapeshellarg($file));
+		if($input->getArgument('files')){
+			$this->wiki->stage($input->getArgument('files'));
 		}
 		if(!$this->wiki->commit($input->getOption('message'))){
 			throw new Exception("Failed to commit wiki");

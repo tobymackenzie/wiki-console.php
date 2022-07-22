@@ -14,5 +14,5 @@ Commands
 - page:path:    Get wiki page file path.
 
 <footer>
-SPDX-License-Identifier: 0BSD
+<p>SPDX-License-Identifier: 0BSD</p>
 </footer>

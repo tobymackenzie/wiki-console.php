@@ -12,3 +12,7 @@ Commands
 - page:create:  Create wiki page.
 - page:open:    Open wiki page in editor.
 - page:path:    Get wiki page file path.
+
+<footer>
+SPDX-License-Identifier: 0BSD
+</footer>

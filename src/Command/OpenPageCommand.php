@@ -25,7 +25,7 @@ class OpenPageCommand extends Command{
 		$name = $input->getArgument('name');
 		$page = $this->wiki->getPage($name);
 		if(!$this->wiki->hasPage($name)){
-			$this->wiki->setPage($name, $page);
+			$this->wiki->writeFile($page);
 		}
 		$command = $input->getOption('command') ?: 'open {{path}} || vi {{path}} || ed {{path}}';
 		if(strpos('{{', $command) === false){

@@ -24,7 +24,7 @@ class PageTest extends TestCase{
 		$name = 'foo';
 		$content = "test\n{$name}\n123";
 		mkdir(self::WIKI_DIR . '/' . $name);
-		file_put_contents(self::WIKI_DIR . '/' . $name . '/' . $name . '.md', $content);
+		file_put_contents(self::WIKI_DIR . '/' . $name . '.md', $content);
 		$tester = new CommandTester($console->find('page:commit'));
 		$tester->execute([
 			'--message'=> 'Initial commit',
@@ -32,7 +32,7 @@ class PageTest extends TestCase{
 		]);
 		$this->assertEquals("Initial commit", $wiki->runGit('log --pretty="%s"'));
 		$content .= "\n456";
-		file_put_contents(self::WIKI_DIR . '/' . $name . '/' . $name . '.md', $content);
+		file_put_contents(self::WIKI_DIR . '/' . $name . '.md', $content);
 		$tester->execute([
 			'name'=> $name,
 		]);
@@ -45,12 +45,12 @@ class PageTest extends TestCase{
 		$tester->execute([
 			'name'=> 'foo',
 		]);
-		$this->assertEquals("stub", file_get_contents(self::WIKI_DIR . '/foo/foo.md'));
+		$this->assertEquals("stub", file_get_contents(self::WIKI_DIR . '/foo.md'));
 		$tester->execute([
 			'--content'=> "asdf\n1234",
 			'name'=> 'bar',
 		]);
-		$this->assertEquals("asdf\n1234", file_get_contents(self::WIKI_DIR . '/bar/bar.md'));
+		$this->assertEquals("asdf\n1234", file_get_contents(self::WIKI_DIR . '/bar.md'));
 	}
 	public function testOpenPage(){
 		$wiki = new Wiki(self::WIKI_DIR);
@@ -63,7 +63,7 @@ class PageTest extends TestCase{
 			'interactive'=> false,
 		]);
 		$this->assertEquals("\n", $tester->getDisplay());
-		file_put_contents(self::WIKI_DIR . '/foo/foo.md', '1234');
+		file_put_contents(self::WIKI_DIR . '/foo.md', '1234');
 		$tester->execute([
 			'--command'=> 'cat',
 			'name'=> 'foo',
@@ -77,10 +77,10 @@ class PageTest extends TestCase{
 		$console = new Console($wiki);
 		$tester = new CommandTester($console->find('page:path'));
 		foreach([
-			'foo'=> self::WIKI_DIR . "/foo/foo.md\n",
-			'bar'=> self::WIKI_DIR . "/bar/bar.md\n",
+			'foo'=> self::WIKI_DIR . "/foo.md\n",
+			'bar'=> self::WIKI_DIR . "/bar.md\n",
 			// 'foo.bar'=> self::WIKI_DIR . "/foo.bar/foo.bar.md\n",
-			'foo-bar'=> self::WIKI_DIR . "/foo-bar/foo-bar.md\n",
+			'foo-bar'=> self::WIKI_DIR . "/foo-bar.md\n",
 		] as $given=> $expect){
 			$tester->execute([
 				'name'=> $given,

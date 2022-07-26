@@ -22,7 +22,6 @@ class PagePathCommand extends Command{
 	}
 	protected function execute(InputInterface $input, OutputInterface $output){
 		$name = $input->getArgument('name');
-		$page = $this->wiki->getPage($name);
 		$output->writeln($this->wiki->getPageFilePath($name));
 	}
 }

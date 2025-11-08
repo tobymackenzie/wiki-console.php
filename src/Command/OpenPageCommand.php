@@ -38,5 +38,6 @@ class OpenPageCommand extends Command{
 		if(!$input->isInteractive()){
 			$output->writeln($result);
 		}
+		return 0;
 	}
 }

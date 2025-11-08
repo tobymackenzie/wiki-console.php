@@ -29,5 +29,6 @@ class CommitCommand extends Command{
 		if(!$this->wiki->commit($input->getOption('message'))){
 			throw new Exception("Failed to commit wiki");
 		}
+		return 0;
 	}
 }

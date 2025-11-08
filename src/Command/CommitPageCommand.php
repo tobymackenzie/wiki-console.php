@@ -30,5 +30,6 @@ class CommitPageCommand extends Command{
 		if(!$this->wiki->commitFile($this->wiki->getPage($name), $input->getOption('message'))){
 			throw new Exception("Failed to commit page");
 		}
+		return 0;
 	}
 }

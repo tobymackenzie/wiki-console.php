@@ -28,5 +28,6 @@ class StageCommand extends Command{
 			$files[] = Wiki::STAGE_ALL;
 		}
 		$this->wiki->stage($files);
+		return 0;
 	}
 }

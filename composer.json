@@ -16,7 +16,7 @@
 	}
 	,"require": {
 		"php": ">=7.4"
-		,"tjm/wiki": "@dev"
+		,"tjm/wiki": "^0||^1"
 		,"symfony/console": ">=2.4 <7.0"
 		,"tjm/sy-console": "^3"
 	}
